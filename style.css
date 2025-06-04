@@ -1,0 +1,332 @@
+/*Import google font Inter*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap');
+
+/* Then in your CSS */
+body {
+    font-family: 'Inter', sans-serif; /* or 'Outfit' */
+}
+
+.hero-title, .logo-text {
+    font-family: 'Playfair Display', serif; /* or keep same font */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+:root {
+    --primary-color: #007bff; /* Bootstrap primary color */
+    --secondary-color: #6c757d; /* Bootstrap secondary color */
+    --success-color: #28a745; /* Bootstrap success color */
+    --danger-color: #dc3545; /* Bootstrap danger color */
+    --warning-color: #ffc107; /* Bootstrap warning color */
+    --info-color: #17a2b8; /* Bootstrap info color */
+    --light-color: #f8f9fa; /* Bootstrap light color */
+    --dark-color: #343a40; /* Bootstrap dark color */
+
+      /* =================== PRIMARY COLORS =================== */
+  /* Sky & Ocean Blues - Main brand colors */
+  --primary-blue: #4A90E2;           /* Sky blue - perfect for birds */
+  --primary-blue-dark: #357ABD;      /* Darker sky blue */
+  --primary-blue-light: #6BA3EA;     /* Light sky blue */
+  
+  /* Nature Greens - Forest & leaf colors */
+  --primary-green: #2ECC71;          /* Fresh green */
+  --primary-green-dark: #27AE60;     /* Forest green */
+  --primary-green-light: #58D68D;    /* Light leaf green */
+  
+  /* ================== SECONDARY COLORS ================== */
+  /* Sunset & Warm tones */
+  --secondary-orange: #F39C12;       /* Sunset orange */
+  --secondary-orange-dark: #E67E22;  /* Deep orange */
+  --secondary-orange-light: #F7B733; /* Golden orange */
+  
+  /* Purple gradients - Magical sky colors */
+  --secondary-purple: #9B59B6;       /* Rich purple */
+  --secondary-purple-dark: #8E44AD;  /* Deep purple */
+  --secondary-purple-light: #BB6BD9; /* Light purple */
+  
+  /* ================== ACCENT COLORS ================== */
+  /* Vibrant bird feather colors */
+  --accent-coral: #FF6B6B;          /* Flamingo coral */
+  --accent-turquoise: #1ABC9C;      /* Kingfisher turquoise */
+  --accent-yellow: #F1C40F;         /* Canary yellow */
+  --accent-red: #E74C3C;            /* Cardinal red */
+  
+  /* ================== NEUTRAL COLORS ================== */
+  /* Clean & modern neutrals */
+  --white: #FFFFFF;
+  --off-white: #FAFAFA;
+  --light-gray: #F8F9FA;
+  --gray-100: #E9ECEF;
+  --gray-200: #DEE2E6;
+  --gray-300: #CED4DA;
+  --gray-400: #ADB5BD;
+  --gray-500: #6C757D;
+  --gray-600: #495057;
+  --gray-700: #343A40;
+  --gray-800: #212529;
+  --dark: #1A1A1A;
+  --black: #000000;
+  
+  /* ================== GRADIENT COMBINATIONS ================== */
+  /* Beautiful gradient pairs for backgrounds */
+  --gradient-sky: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-ocean: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --gradient-sunset: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  --gradient-forest: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+  --gradient-dawn: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+  --gradient-tropical: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  --gradient-royal: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-fire: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+  
+  /* ================== STATUS COLORS ================== */
+  /* Feedback & status indicators */
+  --success: #28A745;
+  --success-light: #D4EDDA;
+  --warning: #FFC107;
+  --warning-light: #FFF3CD;
+  --error: #DC3545;
+  --error-light: #F8D7DA;
+  --info: #17A2B8;
+  --info-light: #D1ECF1;
+  
+  /* ================== TRANSPARENCY LEVELS ================== */
+  /* Useful opacity variants */
+  --alpha-10: rgba(255, 255, 255, 0.1);
+  --alpha-20: rgba(255, 255, 255, 0.2);
+  --alpha-30: rgba(255, 255, 255, 0.3);
+  --alpha-40: rgba(255, 255, 255, 0.4);
+  --alpha-50: rgba(255, 255, 255, 0.5);
+  --alpha-60: rgba(255, 255, 255, 0.6);
+  --alpha-70: rgba(255, 255, 255, 0.7);
+  --alpha-80: rgba(255, 255, 255, 0.8);
+  --alpha-90: rgba(255, 255, 255, 0.9);
+  
+  /* Dark transparency variants */
+  --dark-alpha-10: rgba(0, 0, 0, 0.1);
+  --dark-alpha-20: rgba(0, 0, 0, 0.2);
+  --dark-alpha-30: rgba(0, 0, 0, 0.3);
+  --dark-alpha-40: rgba(0, 0, 0, 0.4);
+  --dark-alpha-50: rgba(0, 0, 0, 0.5);
+  
+  /* ================== SPECIALIZED COLORS ================== */
+  /* BirdTag specific color combinations */
+  --bird-blue: #4A90E2;             /* Main bird blue */
+  --nest-brown: #8B4513;            /* Warm nest brown */
+  --feather-gray: #708090;          /* Soft feather gray */
+  --beak-orange: #FF8C00;           /* Bright beak orange */
+  --wing-purple: #9370DB;           /* Iridescent wing purple */
+  --egg-blue: #ADD8E6;              /* Soft egg blue */
+  
+  /* ================== SHADOW COLORS ================== */
+  /* Pre-defined shadow combinations */
+  --shadow-soft: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.15);
+  --shadow-strong: 0 8px 30px rgba(0, 0, 0, 0.2);
+  --shadow-glow: 0 0 20px rgba(74, 144, 226, 0.3);
+  --shadow-colored: 0 4px 15px rgba(102, 126, 234, 0.3);
+  
+  /* ================== BORDER COLORS ================== */
+  /* Subtle border variations */
+  --border-light: rgba(255, 255, 255, 0.2);
+  --border-medium: rgba(255, 255, 255, 0.3);
+  --border-strong: rgba(255, 255, 255, 0.5);
+  --border-dark: rgba(0, 0, 0, 0.1);
+  
+  /* ================== THEME-SPECIFIC COMBINATIONS ================== */
+  /* Ready-to-use color combinations for different sections */
+  
+  /* Navigation Bar */
+  --nav-bg: rgba(255, 255, 255, 0.95);
+  --nav-text: #333;
+  --nav-hover: var(--gradient-sky);
+  
+  /* Cards & Panels */
+  --card-bg: rgba(255, 255, 255, 0.1);
+  --card-border: var(--border-light);
+  --card-shadow: var(--shadow-medium);
+  
+  /* Buttons */
+  --btn-primary: var(--gradient-ocean);
+  --btn-secondary: var(--gradient-sunset);
+  --btn-success: var(--primary-green);
+  --btn-warning: var(--secondary-orange);
+  --btn-danger: var(--accent-red);
+  
+  /* Form Elements */
+  --input-bg: rgba(255, 255, 255, 0.9);
+  --input-border: var(--gray-300);
+  --input-focus: var(--primary-blue);
+  --input-error: var(--error);
+  
+  /* Background Variations */
+  --bg-main: var(--gradient-sky);
+  --bg-secondary: var(--gradient-tropical);
+  --bg-accent: var(--gradient-dawn);
+  --bg-dark: var(--gradient-forest);
+
+
+    
+    /* Font sizes */
+    --font-size-s: 0.9rem; /* Base font size */
+    --font-size-n: 1rem; /* Large font size */
+    --font-size-m: 1.12rem; /* Small font size */
+    --font-size-l: 1.5rem; /* Extra small font size */
+    --font-size-xl: 2rem; /* Extra large font size */
+    --font-size-xxl: 2.3rem; /* Extra extra large font size */
+
+    /* Font weights */
+    --font-weight-normal: 400; /* Normal font weight */
+    --font-weight-medium: 500; /* Medium font weight */
+    --font-weight-semibold: 600; /* Semi-bold font weight */
+    --font-weight-bold: 700; /* Bold font weight */
+    --font-weight-bolder: 800; /* Bolder font weight */
+    --font-weight-light: 300; /* Light font weight */
+
+    / Boarder radius */
+    --border-radius-s: 8px; /* Default border radius */
+    --border-radius-m: 30px; /* Large border radius */
+    --border-radius-circle: 50%; /* Small border radius */
+
+    /* Site max width */
+    --site-max-width: 1300px; /* Maximum width of the site */
+}
+
+/* Global styles */
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.section-content {
+    padding: 20px;
+    max-width: var(--site-max-width);
+    margin: 0 auto;
+}
+
+/* Navbar styles */
+header {
+    position: fixed;
+    width: 100%;
+    z-index: 5;
+    background-color: var(--primary-color);
+}
+
+header .navbar {
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .nav-logo .logo-text {
+    color: var(--white-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+}
+
+.navbar .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.navbar .nav-menu .nav-link{ 
+    color: var(--white-color);
+    padding: 10px 18px;
+    font-size: var(--font-size-m);
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius-m);
+}
+
+.navbar .nav-menu .nav-link:hover {
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+
+}
+
+/* Hero section styles */
+.hero-section {
+    min-height: 100vh;
+    background: var(--primary-color);
+}
+
+.hero-section .section-content {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--white-color);
+    justify-content: space-between;
+}
+
+.hero-section .hero-details .title {
+    font-size: var(--font-size-xxl);
+    coclor: var(--secondary-color);
+    font-family: 'Playfair Display', serif;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 20px;
+}
+
+.hero-section .hero-details .subtitle {
+    fonts-size: var(--font-size-xl);
+    max-width: 70%;
+    font-weight: var(--font-weight-semibold);
+}
+
+.hero-section .hero-details .description {
+    max-width: 70%;
+    margin: 24px 0 40px;
+    font-size: var(--font-size-m);
+}
+
+.hero-section .hero-details .buttons {
+    display: flex;
+}
+
+.hero-section .hero-details .button {
+    padding: 10px 26px;
+    border: 2px solid transparent
+    color: var(--primary-color);
+    border-radius: var(--border-radius-m);
+    background: var(--secondary-color);
+    font-weight: var(--font-weight-medium);
+    transition: all 0.3s ease;
+}
+
+.hero-section .hero-details .button:hover {
+    color: var(--white-color);
+    border-color: var(--white-color);
+    background: transparent;
+}
+
+.hero-section .hero-image-wrapper {
+    max-width: 500px;
+    margin-right: 30px;
+}
