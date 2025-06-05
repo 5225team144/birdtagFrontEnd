@@ -6,7 +6,25 @@
 
 /* Then in your CSS */
 body {
+    
+    height: 100vh;
+    background-color: #f0f2f5;
+    background-image: url('images/background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
     font-family: 'Inter', sans-serif; /* or 'Outfit' */
+    position: relative;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+    z-index: -1; /* Places it behind all other content */
 }
 
 .hero-title, .logo-text {
@@ -231,7 +249,8 @@ header {
     position: fixed;
     width: 100%;
     z-index: 5;
-    background-color: var(--primary-color);
+    @REM background-color: var(--primary-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 header .navbar {
@@ -247,7 +266,7 @@ header .navbar {
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background-color: var(--primary-color);
+    @REM background-color: var(--primary-color);
     font-size: var(--font-size-xl);
     font-weight: var(--font-weight-semibold);
 }
@@ -259,36 +278,72 @@ header .navbar {
 }
 
 .navbar .nav-menu .nav-link{ 
-    color: var(--white-color);
     padding: 10px 18px;
     font-size: var(--font-size-m);
-    background-color: var(--secondary-color);
-    border-radius: var(--border-radius-m);
+    color: var(--light-color);
+    font-weight: var(--font-weight-light);
+    transition: color 0.3s;
 }
 
 .navbar .nav-menu .nav-link:hover {
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
+    
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Auth styles */
+.auth-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.welcome-message {
+    font-size: 0.9rem;
+    color: var(--dark-color);
+}
+
+.auth-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.auth-btn.login {
+    background-color: var(--nest-brown);
+    color: white;
+}
+
+.auth-btn.logout {
+    background-color: var(--light-color);
+    border: 1px solid #ddd;
 }
 
 /* Hero section styles */
 .hero-section {
     min-height: 100vh;
-    background: var(--primary-color);
+    @REM background: var(--primary-color);
+    color: var(--light-color);
+
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
 }
 
 .hero-section .section-content {
-    display: flex;
-    align-items: center;
-    min-height: 100vh;
-    color: var(--white-color);
-    justify-content: space-between;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .hero-section .hero-details .title {
     font-size: var(--font-size-xxl);
-    coclor: var(--secondary-color);
     font-family: 'Playfair Display', serif;
     font-weight: var(--font-weight-bold);
     margin-bottom: 20px;
@@ -296,8 +351,8 @@ header .navbar {
 
 .hero-section .hero-details .subtitle {
     fonts-size: var(--font-size-xl);
-    max-width: 70%;
     font-weight: var(--font-weight-semibold);
+    margin-bottom: 20px;
 }
 
 .hero-section .hero-details .description {
@@ -306,27 +361,133 @@ header .navbar {
     font-size: var(--font-size-m);
 }
 
-.hero-section .hero-details .buttons {
+/* Upload Area */
+.upload-container {
+    margin-top: 2rem;
+}
+
+.upload-area {
+    border: 2px dashed #ccc;
+    border-radius: border-radius-m;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s;
+    background: white;
+    max-width: 600px;
+    margin: 0 auto;
+
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.upload-area.dragover {
+    border-color: var(--primary-color);
+    background-color: #f0f7ff;
+}
+
+.upload-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.upload-btn {
+    background-color: var(--nest-brown);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 1rem 0;
+    transition: background-color 0.3s;
+}
+
+.upload-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.supported-formats {
+    font-size: 0.9rem;
+}
+
+/* Quick Actions Section */
+.actions-section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: var(--light-color);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.action-buttons {
     display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
 }
 
-.hero-section .hero-details .button {
-    padding: 10px 26px;
-    border: 2px solid transparent
-    color: var(--primary-color);
-    border-radius: var(--border-radius-m);
-    background: var(--secondary-color);
-    font-weight: var(--font-weight-medium);
-    transition: all 0.3s ease;
+.action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    width: 180px;
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.hero-section .hero-details .button:hover {
-    color: var(--white-color);
-    border-color: var(--white-color);
-    background: transparent;
+.action-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
-.hero-section .hero-image-wrapper {
-    max-width: 500px;
-    margin-right: 30px;
+.action-btn span {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+@REM .hero-section .hero-image-wrapper {
+@REM     max-width: 500px;
+@REM     margin-right: 30px;
+@REM }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .section-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-menu {
+        gap: 1rem;
+    }
+    
+    .hero-section .hero-details .title {
+        font-size: 2rem;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .action-btn {
+        width: 100%;
+        max-width: 300px;
+    }
 }

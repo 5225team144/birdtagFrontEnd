@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewpoint" content="width=devce-width, initial-scale=1.0">
+    <meta name="viewport" content="width=devce-width, initial-scale=1.0">
     <title>BirdTag</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -17,45 +17,106 @@
 
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Home</a>
+                    <a href="#" class="nav-link">Upload</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">About</a>
+                    <a href="#" class="nav-link">Search</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Menu</a>
+                    <a href="#" class="nav-link">Manage</a>
                 </li>
-
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Contact</a>
-                </li>
-
             </ul>
+
+            <div class="auth-section">
+                    <span class="welcome-message">Welcome, User!</span>
+                    <button class="auth-btn login">Login</button>
+                    <button class="auth-btn logout">Logout</button>
+            </div>
         </nav>
     </header>
 
     <main>
+        <div class="overlay"></div>
+
         <!-- Hero Section -->
         <section class="hero-section">
             <div class="section-content">
-                <div class="hero-details">
-                    <h2 class="title">BirdTag - An AI supported image detector!</h2>
-                    <h3 class="subtitle">Explore what birds are there in the media</h3>
-                    <p class="description">Welcome and upload the bird media to get started</p>
-
-                    <div class="buttons">
-                        <a href="#" class="button upload-image">Upload your media file now</a>
-                    </div>
-
+                <!-- Hero Details -->
+                <div class="hero-details some bs to make it look good">
+                    <h2 class="title">BirdTag - AI supported image detector!</h2>
+                    <h3 class="subtitle">Discover and organize bird species in your media files</h3>
                 </div>
 
-               <div class="hero-image-wrapper">
+                <!-- Upload Section -->
+                <div class="upload-container">
+                    <div class="upload-area" id="dropZone">
+                        <div class="upload-icon">📸</div>
+                        <p><strong>Click to upload</strong> or drag and drop your files here</p>
+                        <input type="file" id="fileInput" accept="image/*,audio/*,video/*" multiple hidden>
+                        <p class="supported-formats">Supported: Images (JPG, PNG), Audio (MP3, WAV), Video (MP4, MOV)</p>
+                        <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                            UPLOAD BIRD FILES
+                        </button>
+                    </div>
+                </div>
+               <!-- <div class="hero-image-wrapper">
                 <img src="images/hero-image.png" alt="BirdTag Hero Image" class="hero-image">
-               </div>
+               </div> -->
+            </div>
+        </section>
+
+        <!-- Quick Actions Section-->
+         <section class="actions-section">
+            <h2 class="section-title">Quick Actions</h2>
+            <div class="action-buttons">
+                <a href="#" class="action-btn search-btn">
+                    <span>🔍</span>
+                    Search Media
+                </a>
+                <a href="#" class="action-btn manage-btn">
+                    <span>🏷️</span>
+                    Manage Tags
+                </a>
+                <a href="#" class="action-btn browse-btn">
+                    <span>📂</span>
+                    Browse Files
+                </a>
             </div>
         </section>
     </main>
+
+    <script>
+        // Basic file input handler
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const files = e.target.files;
+            if(files.length > 0) {
+                alert(`Selected ${files.length} file(s)`);
+                // Here you would handle the actual upload
+            }
+        });
+
+        // Simple drag and drop
+        const dropZone = document.getElementById('dropZone');
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('dragover');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if(files.length > 0) {
+                alert(`Dropped ${files.length} file(s)`);
+                // Here you would handle the actual upload
+            }
+        });
+    </script>
 </body>
 </html>
