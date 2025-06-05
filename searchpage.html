@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BirdTag</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <!-- Header/Navbar-->
+    <header>
+        <nav class="navbar section-content">
+            <a href="#" class="nav-logo">
+                <img src="images/logo2.png" alt="Logo" class="logo-image"/>
+                <h2 class="logo-text">BirdTag</h2>
+            </a>
+
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Upload</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Search</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Manage</a>
+                </li>
+            </ul>
+
+            <div class="auth-section">
+                    <span class="welcome-message">Welcome, User!</span>
+                    <button class="auth-btn login">Login</button>
+                    <button class="auth-btn logout">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="overlay"></div>
+
+        <!-- Search Tabs-->
+        <div class="tabs">
+            
+            <button class="tab active" data-target="tags-tab">
+                <i class="fa fa-search"></i> Tags
+            </button>
+
+            <button class="tab" data-target="species-tab">
+                <i class="fa fa-search"></i> Bird Species
+            </button>
+
+            <button class="tab" data-target="url-tab">
+                <i class="fa fa-search"></i> File URL
+            </button>
+
+            <button class="tab" data-target="file-tab">
+                <i class="fa fa-search"></i> Uploaded Files
+            </button>
+        </div>
+
+        <!-- Tags Query Form -->
+        <section class="tab-content active" id="tags-tab">
+            <h2>Search by Tags</h2>
+            <div class="input-group">
+                <input type="text" id="species-input" placeholder="Species (e.g., crow)" />
+                <input type="number" id="count-input" placeholder="Count (e.g., 2)" min="1" value="1"/>
+                <button class="remove-field">remove</button>
+            </div>
+
+            <div id="additional-fields" class="additional-fields">
+                <input type='button' value='+ add more fields' id='add-tags' />
+            </div>
+    
+            <button class="upload-btn" id="search-btn">Search</button>
+            
+            <div id="results"></div>
+        </section>
+
+        <!-- Bird Species Query Form-->
+        <section class="tab-content" id="species-tab">
+            <h2>Search by Bird Species</h2>
+            <div class="input-group">
+                <input type="text" id="species-name-input" placeholder="Enter bird species name" />
+                <button class="remove-field">remove</button>
+            </div>
+
+            <div id="additional-fields" class="additional-fields">
+                <input type='button' value='+ add more fields' id='add-species' />
+            </div>
+
+            <button class="upload-btn" id="species-search-btn">Search</button>
+
+            <div id="species-results" style="margin-top: 2rem;"></div>
+        </section>
+
+        <!-- URL Search Tab -->
+        <section id="url-tab" class="tab-content">
+            <h2>Search by Thumbnail URL</h2>
+            <p>Enter the URL of a thumbnail to find the original file:</p>
+            
+            <div class="input-group">
+                <input type="url" id="url-input" placeholder="https://URL" />
+            </div>
+            
+            <button class="upload-btn" id="url-search-btn">Find Original File</button>
+            
+            <div id="url-results" style="margin-top: 2rem;"></div>
+        </section>
+
+        <!-- File Upload Search Tab -->
+        <section id="file-tab" class="tab-content">
+            <h2>Search by File Upload</h2>
+            <p>Upload a file to find similar files with matching bird species:</p>
+            
+            <div class="upload-area" id="file-drop-zone">
+                <div class="upload-icon">📁</div>
+                <p><strong>Click to upload</strong> or drag and drop your file here</p>
+                <input type="file" id="file-upload-input" accept="image/*,audio/*,video/*" hidden />
+                <p class="supported-formats">Supports: JPG, PNG, MP3, WAV, MP4</p>
+            </div>
+            
+            <button class="upload-btn" id="file-search-btn" style="margin-top: 1rem;" disabled>Search Similar Files</button>
+            
+            <div id="file-results" style="margin-top: 2rem;"></div>
+        </section>
+    </main>
+</body>
+</html>
