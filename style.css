@@ -8,6 +8,7 @@
 body {
     
     height: 100vh;
+    min-height: 100vh;
     background-color: #f0f2f5;
     background-image: url('images/background.jpg');
     background-repeat: no-repeat;
@@ -19,6 +20,7 @@ body {
 
 .overlay {
     position: fixed;
+    pointer-events: none;
     top: 0;
     left: 0;
     width: 100%;
@@ -208,7 +210,7 @@ body {
     --font-weight-bolder: 800; /* Bolder font weight */
     --font-weight-light: 300; /* Light font weight */
 
-    / Boarder radius */
+    /* Border radius */
     --border-radius-s: 8px; /* Default border radius */
     --border-radius-m: 30px; /* Large border radius */
     --border-radius-circle: 50%; /* Small border radius */
@@ -247,17 +249,27 @@ img {
 /* Navbar styles */
 header {
     position: fixed;
-    width: 100%;
-    z-index: 5;
-    @REM background-color: var(--primary-color);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    z-index: 1000;
+    background-color: var(--nav-bg, rgba(255, 255, 255, 0.9));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
 }
 
 header .navbar {
+    width: 100%;
+    max-width: var(--site-max-width);
+    margin: 0 auto;
+    padding: 0 2rem;
     display: flex;
-    padding: 20px;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
 }
 
 .navbar .nav-logo .logo-text {
@@ -280,9 +292,10 @@ header .navbar {
 .navbar .nav-menu .nav-link{ 
     padding: 10px 18px;
     font-size: var(--font-size-m);
-    color: var(--light-color);
+    color: var(--dark-color);
     font-weight: var(--font-weight-light);
     transition: color 0.3s;
+    transition: all 0.3s ease;
 }
 
 .navbar .nav-menu .nav-link:hover {
@@ -302,7 +315,7 @@ header .navbar {
 
 .welcome-message {
     font-size: 0.9rem;
-    color: var(--dark-color);
+    color: var(--secondary-color);
 }
 
 .auth-btn {
@@ -334,6 +347,7 @@ header .navbar {
     align-items: center;
     justify-content: center;
     padding: 2rem;
+    
 }
 
 .hero-section .section-content {
@@ -350,7 +364,7 @@ header .navbar {
 }
 
 .hero-section .hero-details .subtitle {
-    fonts-size: var(--font-size-xl);
+    font-size: var(--font-size-l);
     font-weight: var(--font-weight-semibold);
     margin-bottom: 20px;
 }
@@ -368,7 +382,7 @@ header .navbar {
 
 .upload-area {
     border: 2px dashed #ccc;
-    border-radius: border-radius-m;
+    border-radius: var(--border-radius-m);
     padding: 2rem;
     text-align: center;
     transition: all 0.3s;
@@ -393,6 +407,7 @@ header .navbar {
 
 .upload-btn {
     background-color: var(--nest-brown);
+    transition: background-color 0.3s ease;
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
