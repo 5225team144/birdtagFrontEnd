@@ -407,9 +407,24 @@ header .navbar {
     border-color: rgba(255, 255, 255, 0.3);
 }
 
-.upload-area.dragover {
+/* .upload-area.dragover {
     border-color: var(--primary-color);
     background-color: #f0f7ff;
+} */
+
+.custom-file-upload {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #4CAF50;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  transition: background 0.3s;
+}
+
+.custom-file-upload:hover {
+  background: #45a049;
 }
 
 .upload-icon {
