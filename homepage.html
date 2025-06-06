@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BirdTag</title>
+    <script src="homePageScript.js"></script>
+    <script src="navigation.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -11,22 +13,22 @@
     <!-- Header/Navbar-->
     <header>
         <nav class="navbar section-content">
-            <a href="#" class="nav-logo">
+            <a href="homePage.html" class="nav-logo">
                 <img src="images/logo2.png" alt="Logo" class="logo-image"/>
                 <h2 class="logo-text">BirdTag</h2>
             </a>
 
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Upload</a>
+                    <a href="uploadPage.html" class="nav-link">Upload</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Search</a>
+                    <a href="searchPage.html" class="nav-link">Search</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Manage</a>
+                    <a href="managePage.html" class="nav-link">Manage</a>
                 </li>
             </ul>
 
@@ -52,19 +54,25 @@
 
                 <!-- Upload Section -->
                 <div class="upload-container">
-                    <div class="upload-area" id="dropZone">
-                        <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                    <div class="upload-area">
+                        <!-- <input type="file" id="fileInput" class="file-input"accept="image/*,audio/*,video/*" multiple> -->
+
+                        <label for="fileInput" class="custom-file-upload">
+                        Choose a File
+                        </label>
+                        <input type="file" id="fileInput" accept="image/*,audio/*,video/*" multiple hidden>
+                       
+
+                    
+                        
+
+                        <p class="supported-formats">Supported: Images (JPG, PNG), Audio (MP3, WAV), Video (MP4, MOV)</p>
+                        <button class="upload-btn" onclick="uploadFile()">
                             UPLOAD BIRD FILES
                         </button>
-                        <p><strong>Drop files here or click to browse</strong></p>
-                        <input type="file" id="fileInput" accept="image/*,audio/*,video/*" multiple hidden>
-                        <p class="supported-formats">Supported: Images (JPG, PNG), Audio (MP3, WAV), Video (MP4, MOV)</p>
-                        
+                        <p class="upload-status" id="status"></p>
                     </div>
                 </div>
-               <!-- <div class="hero-image-wrapper">
-                <img src="images/hero-image.png" alt="BirdTag Hero Image" class="hero-image">
-               </div> -->
             </div>
         </section>
 
@@ -87,37 +95,5 @@
             </div>
         </section>
     </main>
-
-    <script>
-        // Basic file input handler
-        document.getElementById('fileInput').addEventListener('change', function(e) {
-            const files = e.target.files;
-            if(files.length > 0) {
-                alert(`Selected ${files.length} file(s)`);
-                // Here you would handle the actual upload
-            }
-        });
-
-        // Simple drag and drop
-        const dropZone = document.getElementById('dropZone');
-        dropZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropZone.classList.add('dragover');
-        });
-
-        dropZone.addEventListener('dragleave', () => {
-            dropZone.classList.remove('dragover');
-        });
-
-        dropZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            dropZone.classList.remove('dragover');
-            const files = e.dataTransfer.files;
-            if(files.length > 0) {
-                alert(`Dropped ${files.length} file(s)`);
-                // Here you would handle the actual upload
-            }
-        });
-    </script>
 </body>
 </html>

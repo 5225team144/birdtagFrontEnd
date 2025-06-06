@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - BirdTag</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="auth-styles.css" />
+
+  <!-- AWS + Cognito -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.149.0/aws-sdk.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/amazon-cognito-identity-js/6.3.12/amazon-cognito-identity.min.js"></script>
+</head>
+
+<body class="auth-page">
+  <div class="auth-container">
+    <div class="auth-card">
+      <!-- Header -->
+      <div class="auth-header">
+        <img src="images/logo2.png" alt="BirdTag Logo" class="auth-logo"/>
+        <h1>Welcome Back</h1>
+        <p>Sign in to your BirdTag account</p>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" class="auth-form">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required />
+          <span class="error-message" id="email-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required />
+          <span class="error-message" id="password-error"></span>
+        </div>
+
+        <!-- Remember & Forgot -->
+        <div class="form-options">
+          <label class="checkbox-container">
+            <input type="checkbox" id="rememberMe" name="rememberMe"/>
+            <span class="checkmark"></span>
+            Remember me
+          </label>
+          <a href="#" class="forgot-password">Forgot password?</a>
+        </div>
+
+        <!-- Login Button -->
+        <button type="submit" class="auth-btn primary" id="loginBtn">
+          <span class="btn-text">Sign In</span>
+          <span class="btn-loading" style="display: none;">
+            <i class="loading-spinner"></i> Signing in...
+          </span>
+        </button>
+
+        <!-- Divider -->
+        <div class="form-divider">
+          <span>Don't have an account?</span>
+        </div>
+
+        <!-- Sign Up Button -->
+        <button type="button" class="auth-btn secondary" id="signupRedirect">
+          Create New Account
+        </button>
+      </form>
+
+      <!-- Error Message -->
+      <div class="error-banner" id="errorBanner" style="display: none;">
+        <span class="error-text" id="errorText"></span>
+        <button class="error-close" id="errorClose" aria-label="Close error message">&times;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+    <div class="loading-content">
+      <div class="loading-spinner large"></div>
+      <p>Signing you in...</p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="router.js"></script>
+  <script src="auth-cognito.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const loginForm = document.getElementById('loginForm');
+      const loginBtn = document.getElementById('loginBtn');
+      const errorBanner = document.getElementById('errorBanner');
+      const errorText = document.getElementById('errorText');
+      const errorClose = document.getElementById('errorClose');
+      const loadingOverlay = document.getElementById('loadingOverlay');
+      const signupRedirect = document.getElementById('signupRedirect');
+
+      // Redirect to home if already authenticated
+      if (window.birdTagRouter?.isAuthenticated()) {
+        window.birdTagRouter.navigateTo('home');
+        return;
+      }
+
+      // Login form submit
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+
+        if (!email || !password) {
+          return showError("Please fill in all fields");
+        }
+
+        try {
+          setLoading(true);
+          hideError();
+          await signInUser(email, password);
+          window.birdTagRouter.navigateTo('home');
+        } catch (err) {
+          setLoading(false);
+          showError(err.message || "Failed to sign in. Please try again.");
+        }
+      });
+
+      // Signup button click
+      signupRedirect.addEventListener('click', () => {
+        window.birdTagRouter.navigateTo('signup');
+      });
+
+      // Close error banner
+      errorClose.addEventListener('click', hideError);
+
+      function setLoading(isLoading) {
+        loginBtn.querySelector('.btn-text').style.display = isLoading ? 'none' : 'inline';
+        loginBtn.querySelector('.btn-loading').style.display = isLoading ? 'inline-flex' : 'none';
+        loginBtn.disabled = isLoading;
+        loadingOverlay.style.display = isLoading ? 'flex' : 'none';
+      }
+
+      function showError(message) {
+        errorText.textContent = message;
+        errorBanner.style.display = 'flex';
+      }
+
+      function hideError() {
+        errorBanner.style.display = 'none';
+        errorText.textContent = '';
+      }
+    });
+  </script>
+</body>
+</html>

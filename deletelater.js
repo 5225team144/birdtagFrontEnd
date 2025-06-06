@@ -1,5 +1,3 @@
-// search.js - Refactored version
-
 // Tab switching functionality
 function setupTabs() {
   document.querySelectorAll('.tab').forEach(tab => {
