@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BirdTag</title>
-    <script src="homePageScript.js"></script>
-    <script src="navigation.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <script src="../scripts/homePageScript.js"></script>
+    <script src="../scripts/navigation.js"></script>
+    <link rel="stylesheet" href="../styles/style.css">
 </head>
 
 <body>
@@ -14,7 +14,7 @@
     <header>
         <nav class="navbar section-content">
             <a href="homePage.html" class="nav-logo">
-                <img src="images/logo2.png" alt="Logo" class="logo-image"/>
+                <img src="../images/logo2.png" alt="Logo" class="logo-image"/>
                 <h2 class="logo-text">BirdTag</h2>
             </a>
 
@@ -61,11 +61,6 @@
                         Choose a File
                         </label>
                         <input type="file" id="fileInput" accept="image/*,audio/*,video/*" multiple hidden>
-                       
-
-                    
-                        
-
                         <p class="supported-formats">Supported: Images (JPG, PNG), Audio (MP3, WAV), Video (MP4, MOV)</p>
                         <button class="upload-btn" onclick="uploadFile()">
                             UPLOAD BIRD FILES
