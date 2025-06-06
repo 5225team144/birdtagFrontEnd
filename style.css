@@ -556,6 +556,21 @@ input[type="url"] {
     flex: 1;
     font-size: 1rem;
 }
+
+.remove-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-field-btn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
     
 .remove-field {
     background-color: var(--danger-color);
@@ -570,7 +585,14 @@ input[type="url"] {
 .additional-fields {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+}
+
+.dynamic-fields-container {
+    margin-bottom: 0.5rem; 
+}
+
+.input-group {
+    margin-bottom: 0.5rem; 
 }
 
 /* Results */

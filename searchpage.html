@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BirdTag</title>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -65,16 +66,18 @@
         <!-- Tags Query Form -->
         <section class="tab-content active" id="tags-tab">
             <h2>Search by Tags</h2>
-            <div class="input-group">
-                <input type="text" id="species-input" placeholder="Species (e.g., crow)" />
-                <input type="number" id="count-input" placeholder="Count (e.g., 2)" min="1" value="1"/>
-                <button class="remove-field">remove</button>
+            
+             <div id="tag-fields" class="additional-fields">
+                <div class="dynamic-fields-container">
+                    <div class="input-group">
+                        <input type="text" placeholder="Species (e.g., crow)" required />
+                        <input type="number" placeholder="Count (e.g., 2)" min="1" value="1" required />
+                        <button class="remove-field">Remove</button>
+                    </div>
+                </div>
+                <input type="button" value="+ add more fields" id="add-tags" />
             </div>
 
-            <div id="additional-fields" class="additional-fields">
-                <input type='button' value='+ add more fields' id='add-tags' />
-            </div>
-    
             <button class="upload-btn" id="search-btn">Search</button>
             
             <div id="results"></div>
@@ -83,12 +86,14 @@
         <!-- Bird Species Query Form-->
         <section class="tab-content" id="species-tab">
             <h2>Search by Bird Species</h2>
-            <div class="input-group">
-                <input type="text" id="species-name-input" placeholder="Enter bird species name" />
-                <button class="remove-field">remove</button>
-            </div>
-
-            <div id="additional-fields" class="additional-fields">
+            
+            <div id="species-fields" class="additional-fields">
+                <div class="dynamic-fields-container">
+                    <div class="input-group">
+                        <input type="text" id="species-name-input" placeholder="Enter bird species name" />
+                        <button class="remove-field">Remove</button>
+                    </div>
+                </div>
                 <input type='button' value='+ add more fields' id='add-species' />
             </div>
 
@@ -128,5 +133,22 @@
             <div id="file-results" style="margin-top: 2rem;"></div>
         </section>
     </main>
+
+    <!-- <script>
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tabContents.forEach(c => c.classList.remove('active'));
+
+            tab.classList.add('active');
+            const targetId = tab.getAttribute('data-target');
+            document.getElementById(targetId).classList.add('active');
+            
+        });
+        });
+    </script> -->
 </body>
 </html>
