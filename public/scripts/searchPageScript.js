@@ -1,12 +1,10 @@
 // searchPageScript.js - Complete implementation for your search page
-
+console.log("hello")
 // Configuration - Replace with your actual API details
 const API_CONFIG = {
-    baseUrl: 'https://d32mqshkvl.execute-api.ap-southeast-2.amazonaws.com/queries01', 
-    apiKey: 'Zo08O9QTC71Aq2pRaSib4P4FFrQT0nW5XAIRugu0', // Replace with actual API key
+    baseUrl: 'https://d32mqshkvl.execute-api.ap-southeast-2.amazonaws.com/queries01',
     headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': 'Zo08O9QTC71Aq2pRaSib4P4FFrQT0nW5XAIRugu0' // Replace with actual API key
+        'Content-Type': 'application/json'// Replace with actual API key
     }
 };
 
@@ -242,6 +240,7 @@ async function handleSpeciesSearch() {
 
 // URL Search Handler
 async function handleUrlSearch() {
+    console.log("hello")
     try {
         const url = elements.urlInput.value.trim();
         
@@ -279,39 +278,40 @@ async function handleUrlSearch() {
 
 // File Search Handler
 async function handleFileSearch() {
+    console.log("hello");
     try {
         const fileInput = elements.fileUploadInput;
-        
+
         if (!fileInput.files || fileInput.files.length === 0) {
             throw new Error('Please select a file first');
         }
-        
+
         const file = fileInput.files[0];
         showLoading(elements.fileResults);
-        
-        // Create FormData for file upload
-        const formData = new FormData();
-        formData.append('file', file);
-        
-        console.log('Sending file search request with file:', file.name);
-        
-        // You'll need to create this endpoint
-        const response = await fetch(`${API_CONFIG.baseUrl}/search-by-file`, {
-            method: 'POST',
-            headers: {
-                'x-api-key': API_CONFIG.apiKey
-                // Don't set Content-Type for FormData - browser will set it automatically
-            },
-            body: formData
-        });
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const result = await response.json();
-        displaySearchResults(result, elements.fileResults);
-        
+
+        const reader = new FileReader();
+        reader.onload = async function () {
+            const base64Data = reader.result; // 包含 data:image/jpeg;base64,...
+
+            // console.log(base64Data)
+
+            const response = await fetch(`${API_CONFIG.baseUrl}/search-by-upload-image`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ image: base64Data })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            displaySearchResults(result, elements.fileResults);
+        };
+
+        reader.readAsDataURL(file); // file 是上传的 Blob
     } catch (error) {
         console.error('File search error:', error);
         showError(elements.fileResults, error.message);
