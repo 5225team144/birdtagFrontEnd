@@ -735,6 +735,15 @@ input[type="url"] {
   gap: 0.5rem;
 }
 
+.manage-title {
+  margin: 2rem 0;
+  color: var(--nest-brown);
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: var(--font-size-xl);
+}
+
 .input-group-list {
   margin-bottom: 1rem;
 }
