@@ -1,11 +1,17 @@
 const fileInput = document.getElementById('fileInput');
 const status = document.getElementById('status');
 
+if (!fileInput || !status) {
+  console.error('Required elements not found!');
+  // You might want to disable the upload button here
+}
+
 async function uploadFile() {
-      
       
       if (!fileInput.files.length) {
         status.textContent = "Please choose a file first!";
+        if (status) status.textContent = errorMsg;
+        console.error(errorMsg);
         return;
       }
 
@@ -14,7 +20,7 @@ async function uploadFile() {
       const fileType = file.type;
 
       // 1. Ask Lambda for the pre-signed URL
-      const lambdaResponse = await fetch('https://cgakkpreci.execute-api.us-east-1.amazonaws.com/test', {
+      const lambdaResponse = await fetch('https://fkbbeul2p9.execute-api.ap-southeast-2.amazonaws.com/test_upload_file', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

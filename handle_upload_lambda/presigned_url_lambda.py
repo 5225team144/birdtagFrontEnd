@@ -4,7 +4,7 @@ import os
 from botocore.exceptions import ClientError
 
 s3 = boto3.client('s3')
-bucket = 'pixtag-uploaded-images' # Replace with your own S3 bucket name
+bucket = '5225birdtags3-01' # Replace with your own S3 bucket name
 
 def lambda_handler(event, context):
     # Handle OPTIONS request for CORS preflight
@@ -13,7 +13,7 @@ def lambda_handler(event, context):
             "statusCode": 200,
             "headers": {
                 "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "ANY, OPTIONS",
+                "Access-Control-Allow-Methods": "POST, PUT, OPTIONS",
                 "Access-Control-Allow-Headers": "Content-Type"
             }
         }
@@ -31,7 +31,7 @@ def lambda_handler(event, context):
             'put_object',
             Params={
                 'Bucket': bucket,
-                'Key': f'original/{file_name}',
+                'Key': f'originals/{file_name}',
                 'ContentType': file_type
             },
             ExpiresIn=900  # expire after 15 minutes
