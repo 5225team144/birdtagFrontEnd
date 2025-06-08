@@ -161,7 +161,7 @@ async function handleTagSearch() {
             const countInput = group.querySelector('input[type="number"]');
             
             if (speciesInput.value.trim() && countInput.value) {
-                tagData[speciesInput.value.trim().toLowerCase()] = parseInt(countInput.value);
+                tagData[speciesInput.value.trim()] = parseInt(countInput.value);
             }
         });
         
@@ -208,7 +208,7 @@ async function handleSpeciesSearch() {
         inputGroups.forEach(group => {
             const speciesInput = group.querySelector('input[type="text"]');
             if (speciesInput.value.trim()) {
-                speciesData[speciesInput.value.trim().toLowerCase()] = 1; // Default count of 1 for species search
+                speciesData[speciesInput.value.trim()] = 1; // Default count of 1 for species search
             }
         });
         
@@ -392,10 +392,9 @@ function displaySearchResults(result, container) {
             <h3>Found ${result.count} file(s)</h3>
             <div class="results-grid">
     `;
-    
-    console.log("Thumbnail URL:", item.thumbnail_url);
 
     result.links.forEach(item => {
+        console.log("Thumbnail URL:", item.thumbnail_url);
         // if (item.media_type && item.media_type.startsWith('image/')) {
         //     // Display image thumbnail
         //     html += `
