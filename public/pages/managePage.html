@@ -46,7 +46,7 @@
 
     <!-- Section 1: Bulk Tagging -->
     <section class="manage-section">
-      <h2>🏷️ Add or Remove Tags</h2>
+      <h2>Add or Remove Tags</h2>
       
       <div class="input-group-list" id="tag-file-url-list">
   <div class="input-group">
@@ -64,19 +64,19 @@
 
       <div class="input-group-list" id="tag-values-list">
   <div class="input-group">
-    <input type="text" placeholder="e.g. crow,2" class="tag-value-input"/>
+    <input type="text" placeholder="e.g. Crow,2" class="tag-value-input"/>
     <button class="remove-field">Remove</button>
   </div>
 </div>
 <button type="button" id="add-tag-value">+ Add Tag</button>
 
-      <button id="submit-tags-btn">Submit Tag Operation</button>
+      <button class="manage-submit-btn"id="submit-tags-btn">Submit Tag Operation</button>
       <div id="tag-update-status" class="status-message"></div>
     </section>
 
     <!-- Section 2: Delete Files -->
     <section class="manage-section">
-      <h2>🗑️ Delete Files</h2>
+      <h2>Delete Files</h2>
 
       <div class="input-group-list" id="delete-file-url-list">
   <div class="input-group">
@@ -86,7 +86,7 @@
 </div>
 <button type="button" id="add-delete-url">+ Add File URL</button>
 
-      <button id="delete-files-btn">Delete Files</button>
+      <button class="manage-submit-btn" id="delete-files-btn">Delete Files</button>
       <div id="delete-status" class="status-message"></div>
     </section>
   </main>
