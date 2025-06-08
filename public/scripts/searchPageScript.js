@@ -2,7 +2,7 @@
 
 // Configuration - Replace with your actual API details
 const API_CONFIG = {
-    baseUrl: 'https://d32mqshkvl.execute-api.ap-southeast-2.amazonaws.com/queries01',
+    baseUrl: 'https://d32mqshkvl.execute-api.ap-southeast-2.amazonaws.com/queries01', 
     apiKey: 'Zo08O9QTC71Aq2pRaSib4P4FFrQT0nW5XAIRugu0', // Replace with actual API key
     headers: {
         'Content-Type': 'application/json',
@@ -171,7 +171,7 @@ async function handleTagSearch() {
             throw new Error('Please enter at least one species and count');
         }
         
-        console.log('Sending tag search request:', tagData);
+        //console.log('Sending tag search request:', tagData);
         
         const response = await fetch(`${API_CONFIG.baseUrl}/search-by-tags`, {
             method: 'POST',
@@ -185,7 +185,9 @@ async function handleTagSearch() {
             console.log('Raw response status text:', response.statusText); // Log status text for debugging
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        
+
+        console.log("Sending tag search request:", JSON.stringify(tagData));
+
         const result = await response.json();
         console.log("API result:", result); // Log the result for debugging
         displaySearchResults(result, elements.tagResults);
@@ -391,13 +393,41 @@ function displaySearchResults(result, container) {
             <div class="results-grid">
     `;
     
+    console.log("Thumbnail URL:", item.thumbnail_url);
+
     result.links.forEach(item => {
-        if (item.media_type && item.media_type.startsWith('image/')) {
+        // if (item.media_type && item.media_type.startsWith('image/')) {
+        //     // Display image thumbnail
+        //     html += `
+        //         <div class="result-item image-item">
+        //             <img src="${item.thumbnail_url}" alt="Bird image" 
+        //                  onclick="openFullImage('${item.image_url}')" />
+        //             <div class="item-info">
+        //                 <p><strong>Type:</strong> ${item.media_type}</p>
+        //                 <p><strong>Upload:</strong> ${formatDate(item.upload_time)}</p>
+        //                 <button onclick="copyToClipboard('${item.image_url}')">Copy URL</button>
+        //             </div>
+        //         </div>
+        //     `;
+        // } else {
+        //     // Display video/audio as download link
+        //     html += `
+        //         <div class="result-item media-item">
+        //             <div class="media-icon">🎵</div>
+        //             <div class="item-info">
+        //                 <p><strong>Type:</strong> ${item.media_type || 'Media file'}</p>
+        //                 <p><strong>Upload:</strong> ${formatDate(item.upload_time)}</p>
+        //                 <a href="${item.image_url}" download class="download-btn">Download File</a>
+        //                 <button onclick="copyToClipboard('${item.image_url}')">Copy URL</button>
+        //             </div>
+        //         </div>
+        //     `;
+        // }
+        if (item.media_type && item.media_type.startsWith("image/") && item.thumbnail_url) {
             // Display image thumbnail
             html += `
                 <div class="result-item image-item">
-                    <img src="${item.thumbnail_url}" alt="Bird image" 
-                         onclick="openFullImage('${item.image_url}')" />
+                    <img src="${item.thumbnail_url}" alt="Bird image" onclick="openFullImage('${item.image_url}')" />
                     <div class="item-info">
                         <p><strong>Type:</strong> ${item.media_type}</p>
                         <p><strong>Upload:</strong> ${formatDate(item.upload_time)}</p>
@@ -406,12 +436,12 @@ function displaySearchResults(result, container) {
                 </div>
             `;
         } else {
-            // Display video/audio as download link
+            // Display media file (video/audio) link
             html += `
                 <div class="result-item media-item">
                     <div class="media-icon">🎵</div>
                     <div class="item-info">
-                        <p><strong>Type:</strong> ${item.media_type || 'Media file'}</p>
+                        <p><strong>Type:</strong> ${item.media_type}</p>
                         <p><strong>Upload:</strong> ${formatDate(item.upload_time)}</p>
                         <a href="${item.image_url}" download class="download-btn">Download File</a>
                         <button onclick="copyToClipboard('${item.image_url}')">Copy URL</button>
@@ -419,6 +449,7 @@ function displaySearchResults(result, container) {
                 </div>
             `;
         }
+
     });
     
     html += `
