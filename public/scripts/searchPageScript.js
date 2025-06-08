@@ -378,6 +378,9 @@ function handleFileSelection(files) {
 
 // Display Functions
 function displaySearchResults(result, container) {
+    // Common fallback thumbnail 
+      const fallbackThumbnail = "../images/placeholder.png";
+
     if (!result.links || result.links.length === 0) {
         container.innerHTML = `
             <div class="no-results">
@@ -395,33 +398,6 @@ function displaySearchResults(result, container) {
 
     result.links.forEach(item => {
         console.log("Thumbnail URL:", item.thumbnail_url);
-        // if (item.media_type && item.media_type.startsWith('image/')) {
-        //     // Display image thumbnail
-        //     html += `
-        //         <div class="result-item image-item">
-        //             <img src="${item.thumbnail_url}" alt="Bird image" 
-        //                  onclick="openFullImage('${item.image_url}')" />
-        //             <div class="item-info">
-        //                 <p><strong>Type:</strong> ${item.media_type}</p>
-        //                 <p><strong>Upload:</strong> ${formatDate(item.upload_time)}</p>
-        //                 <button onclick="copyToClipboard('${item.image_url}')">Copy URL</button>
-        //             </div>
-        //         </div>
-        //     `;
-        // } else {
-        //     // Display video/audio as download link
-        //     html += `
-        //         <div class="result-item media-item">
-        //             <div class="media-icon">🎵</div>
-        //             <div class="item-info">
-        //                 <p><strong>Type:</strong> ${item.media_type || 'Media file'}</p>
-        //                 <p><strong>Upload:</strong> ${formatDate(item.upload_time)}</p>
-        //                 <a href="${item.image_url}" download class="download-btn">Download File</a>
-        //                 <button onclick="copyToClipboard('${item.image_url}')">Copy URL</button>
-        //             </div>
-        //         </div>
-        //     `;
-        // }
         if (item.media_type && item.media_type.startsWith("image/") && item.thumbnail_url) {
             // Display image thumbnail
             html += `
@@ -438,7 +414,7 @@ function displaySearchResults(result, container) {
             // Display media file (video/audio) link
             html += `
                 <div class="result-item media-item">
-                    <div class="media-icon">🎵</div>
+                    <div class="media-icon"><img src="${fallbackThumbnail}" alt="No thumbnail available" class="preview-img" /></div>
                     <div class="item-info">
                         <p><strong>Type:</strong> ${item.media_type}</p>
                         <p><strong>Upload:</strong> ${formatDate(item.upload_time)}</p>

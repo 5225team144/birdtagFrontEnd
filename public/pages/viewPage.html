@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BirdTag - View Files</title>
+  <link rel="stylesheet" href="../styles/style.css" />
+  <script src="../scripts/viewPageScript.js" defer></script>
+</head>
+<body>
+  <header>
+    <nav class="navbar section-content">
+      <a href="homePage.html" class="nav-logo">
+        <img src="../images/logo2.png" alt="Logo" class="logo-image" />
+        <h2 class="logo-text">BirdTag</h2>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item">
+                    <a href="homePage.html" class="nav-link">Home</a>
+                </li>
+        <li class="nav-item"><a href="viewPage.html" class="nav-link active">View</a></li>
+        <li class="nav-item"><a href="searchPage.html" class="nav-link">Search</a></li>
+        <li class="nav-item"><a href="managePage.html" class="nav-link">Manage</a></li>
+      </ul>
+
+      <div class="auth-section">
+          <span class="welcome-message">Welcome, User!</span>
+          <button class="auth-btn login">Login</button>
+          <button class="auth-btn logout">Logout</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="viewPage_container">
+    <h1>All Uploaded Files</h1>
+
+    <!-- Filter Controls -->
+    <div class="filter-controls">
+      <button class="filter-btn" data-type="all">All</button>
+      <button class="filter-btn" data-type="image">Images</button>
+      <button class="filter-btn" data-type="video">Videos</button>
+      <button class="filter-btn" data-type="audio">Audio</button>
+    </div>
+
+    <!-- Results Container -->
+    <div id="view-results" class="file-grid"></div>
+  </main>
+</body>
+</html>

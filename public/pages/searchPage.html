@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BirdTag</title>
+    <title>BirdTag Search Page</title>
     <!-- AWS Cognito SDK -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/amazon-cognito-identity-js/6.3.12/amazon-cognito-identity.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1490.0/aws-sdk.min.js"></script>
@@ -23,6 +23,10 @@
             </a>
 
             <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="homePage.html" class="nav-link">Home</a>
+                </li>
+
                 <li class="nav-item">
                     <a href="viewPage.html" class="nav-link">View</a>
                 </li>
@@ -44,8 +48,8 @@
         </nav>
     </header>
 
-    <main class="container">
-        <div class="overlay"></div>
+    <main class="searchPage_container">
+        <!-- <div class="overlay"></div> -->
 
         <!-- Search Tabs-->
         <div class="tabs">
@@ -69,12 +73,12 @@
 
         <!-- Tags Query Form -->
         <section class="tab-content active" id="tags-tab">
-            <h2>Search by Tags</h2>
+            <h1>Search by Tags</h1>
             
              <div id="tag-fields" class="additional-fields">
                 <div class="dynamic-fields-container">
                     <div class="input-group">
-                        <input type="text" placeholder="Species (e.g., crow)" required />
+                        <input type="text" placeholder="Species (e.g., Crow)" required />
                         <input type="number" placeholder="Count (e.g., 2)" min="1" value="1" required />
                         <button class="remove-field">Remove</button>
                     </div>
@@ -89,7 +93,7 @@
 
         <!-- Bird Species Query Form-->
         <section class="tab-content" id="species-tab">
-            <h2>Search by Bird Species</h2>
+            <h1>Search by Bird Species</h1>
             
             <div id="species-fields" class="additional-fields">
                 <div class="dynamic-fields-container">
@@ -108,7 +112,7 @@
 
         <!-- URL Search Tab -->
         <section id="url-tab" class="tab-content">
-            <h2>Search by Thumbnail URL</h2>
+            <h1>Search by Thumbnail URL</h1>
             <p>Enter the URL of a thumbnail to find the original file:</p>
             
             <div class="input-group">
@@ -122,7 +126,7 @@
 
         <!-- File Upload Search Tab -->
         <section id="file-tab" class="tab-content">
-            <h2>Search by File Upload</h2>
+            <h1>Search by File Upload</h1>
             <p>Upload a file to find similar files with matching bird species:</p>
             
             <div class="upload-area" id="file-drop-zone">
