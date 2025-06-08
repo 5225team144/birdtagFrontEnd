@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BirdTag</title>
+    <script src="../scripts/homePageScript.js"></script>
+    <script src="../scripts/navigation.js"></script>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+
+<body>
+    <!-- Header/Navbar-->
+    <header>
+        <nav class="navbar section-content">
+            <a href="homePage.html" class="nav-logo">
+                <img src="../images/logo2.png" alt="Logo" class="logo-image"/>
+                <h2 class="logo-text">BirdTag</h2>
+            </a>
+
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="viewPage.html" class="nav-link">View</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="searchPage.html" class="nav-link">Search</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="managePage.html" class="nav-link">Manage</a>
+                </li>
+            </ul>
+
+            <div class="auth-section">
+                    <span class="welcome-message">Welcome, User!</span>
+                    <button class="auth-btn login">Login</button>
+                    <button class="auth-btn logout">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+  <main class="container">
+    <h2>Manage Files</h1>
+
+    <!-- Section 2: Bulk Tagging -->
+    <section class="manage-section">
+      <h2>🏷️ Add or Remove Tags</h2>
+      
+      <textarea id="tag-file-urls" placeholder="Enter thumbnail URLs, one per line"></textarea>
+
+      <label for="tag-operation">Operation:</label>
+      <select id="tag-operation">
+        <option value="1">Add Tags</option>
+        <option value="0">Remove Tags</option>
+      </select>
+
+      <textarea id="tag-values" placeholder="Enter tags, e.g. crow,2\npigeon,1"></textarea>
+
+      <button id="submit-tags-btn">Submit Tag Operation</button>
+      <div id="tag-update-status" class="status-message"></div>
+    </section>
+
+    <!-- Section 3: Delete Files -->
+    <section class="manage-section">
+      <h2>🗑️ Delete Files</h2>
+
+      <textarea id="delete-file-urls" placeholder="Enter thumbnail or file URLs to delete, one per line"></textarea>
+
+      <button id="delete-files-btn">Delete Files</button>
+      <div id="delete-status" class="status-message"></div>
+    </section>
+  </main>
+</body>
+</html>
