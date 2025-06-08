@@ -3,7 +3,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BirdTag</title>
-    <script src="../scripts/managePage.js"></script>
     <link rel="stylesheet" href="../styles/style.css">
 </head>
 
@@ -20,7 +19,7 @@
                 <li class="nav-item">
                     <a href="homePage.html" class="nav-link">Home</a>
                 </li>
-                
+
                 <li class="nav-item">
                     <a href="viewPage.html" class="nav-link">View</a>
                 </li>
@@ -42,14 +41,20 @@
         </nav>
     </header>
 
-  <main class="container">
+  <main class="managePage_container">
     <h2>Manage Files</h1>
 
-    <!-- Section 2: Bulk Tagging -->
+    <!-- Section 1: Bulk Tagging -->
     <section class="manage-section">
       <h2>🏷️ Add or Remove Tags</h2>
       
-      <textarea id="tag-file-urls" placeholder="Enter thumbnail URLs, one per line"></textarea>
+      <div class="input-group-list" id="tag-file-url-list">
+  <div class="input-group">
+    <input type="text" placeholder="Enter thumbnail URL" class="tag-url-input"/>
+    <button class="remove-field">Remove</button>
+  </div>
+</div>
+<button type="button" id="add-tag-url">+ Add URL</button>
 
       <label for="tag-operation">Operation:</label>
       <select id="tag-operation">
@@ -57,21 +62,34 @@
         <option value="0">Remove Tags</option>
       </select>
 
-      <textarea id="tag-values" placeholder="Enter tags, e.g. crow,2\npigeon,1"></textarea>
+      <div class="input-group-list" id="tag-values-list">
+  <div class="input-group">
+    <input type="text" placeholder="e.g. crow,2" class="tag-value-input"/>
+    <button class="remove-field">Remove</button>
+  </div>
+</div>
+<button type="button" id="add-tag-value">+ Add Tag</button>
 
       <button id="submit-tags-btn">Submit Tag Operation</button>
       <div id="tag-update-status" class="status-message"></div>
     </section>
 
-    <!-- Section 3: Delete Files -->
+    <!-- Section 2: Delete Files -->
     <section class="manage-section">
       <h2>🗑️ Delete Files</h2>
 
-      <textarea id="delete-file-urls" placeholder="Enter thumbnail or file URLs to delete, one per line"></textarea>
+      <div class="input-group-list" id="delete-file-url-list">
+  <div class="input-group">
+    <input type="text" placeholder="Enter file URL" class="delete-url-input"/>
+    <button class="remove-field">Remove</button>
+  </div>
+</div>
+<button type="button" id="add-delete-url">+ Add File URL</button>
 
       <button id="delete-files-btn">Delete Files</button>
       <div id="delete-status" class="status-message"></div>
     </section>
   </main>
+  <script src="../scripts/managePage.js"></script>
 </body>
 </html>

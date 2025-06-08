@@ -256,8 +256,7 @@ async function handleUrlSearch() {
         
         console.log('Sending URL search request:', { url: url });
         
-        // You'll need to create this endpoint or modify existing one
-        const response = await fetch(`${API_CONFIG.baseUrl}/search-by-url`, {
+        const response = await fetch(`${API_CONFIG.baseUrl}/get-full-url`, {
             method: 'POST',
             headers: API_CONFIG.headers,
             body: JSON.stringify({ thumbnail_url: url })
@@ -436,22 +435,64 @@ function displaySearchResults(result, container) {
 }
 
 function displayUrlResult(result, container) {
-    if (!result.original_url) {
+    // Check if we have a valid result with image_url
+    if (!result.image_url) {
         container.innerHTML = `
             <div class="no-results">
                 <p>No original file found for this thumbnail URL.</p>
+                ${result.message ? `<p>${result.message}</p>` : ''}
             </div>
         `;
         return;
     }
-    
+
+    result.image_url = result.image_url
+        .replace(/\.jpg\.jpg$/i, '.jpg')  // Fix .jpg.jpg
+        .replace(/\.mp4\.mp4$/i, '.mp4'); // Fix .mp4.mp4
+
+    // Determine media type and render appropriately
+    const mediaType = result.media_type || '';
+    const isImage = mediaType.startsWith('image/');
+    const isVideo = mediaType.startsWith('video/');
+    const isAudio = mediaType.startsWith('audio/');
+
+    let mediaElement = '';
+    if (isImage) {
+        mediaElement = `<img src="${result.image_url}" alt="Original image" class="original-media" />`;
+    } else if (isVideo) {
+        mediaElement = `
+            <video controls class="original-media">
+                <source src="${result.image_url}" type="${mediaType}">
+                Your browser does not support videos.
+            </video>
+        `;
+    } else if (isAudio) {
+        mediaElement = `
+            <audio controls class="original-media">
+                <source src="${result.image_url}" type="${mediaType}">
+                Your browser does not support audio.
+            </audio>
+        `;
+    } else {
+        // Fallback for unknown types
+        mediaElement = `<a href="${result.image_url}" target="_blank">View Original File</a>`;
+    }
+
     container.innerHTML = `
         <div class="url-result">
             <h3>Original File Found</h3>
-            <div class="result-item">
-                <p><strong>Original URL:</strong></p>
-                <a href="${result.original_url}" target="_blank" class="url-link">${result.original_url}</a>
-                <button onclick="copyToClipboard('${result.original_url}')">Copy URL</button>
+            <div class="media-container">
+                ${mediaElement}
+                <div class="media-info">
+                    <p><strong>Type:</strong> ${mediaType || 'Unknown'}</p>
+                    <p><strong>Uploaded:</strong> ${formatDate(result.upload_time)}</p>
+                    <button onclick="copyToClipboard('${result.image_url}')" class="copy-btn">
+                        Copy URL
+                    </button>
+                    <a href="${result.image_url}" download class="download-btn">
+                        Download
+                    </a>
+                </div>
             </div>
         </div>
     `;

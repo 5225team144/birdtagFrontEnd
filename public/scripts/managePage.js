@@ -38,11 +38,62 @@ function displaySearchResults(result, container) {
     .join("");
 }
 
-// 2. Bulk tag update
+function addField(containerId, inputClass) {
+  const container = document.getElementById(containerId);
+  const div = document.createElement("div");
+  div.className = "input-group";
+  div.innerHTML = `
+    <input type="text" class="${inputClass}" />
+    <button class="remove-field">Remove</button>
+  `;
+  container.appendChild(div);
+}
+
+document.getElementById("add-tag-url").addEventListener("click", () => {
+  addField("tag-file-url-list", "tag-url-input");
+});
+
+document.getElementById("add-tag-value").addEventListener("click", () => {
+  addField("tag-values-list", "tag-value-input");
+});
+
+document.getElementById("add-delete-url").addEventListener("click", () => {
+  addField("delete-file-url-list", "delete-url-input");
+});
+
+// Handle remove buttons
+document.body.addEventListener("click", (e) => {
+  if (e.target.classList.contains("remove-field")) {
+    const group = e.target.closest(".input-group");
+    const list = group.parentElement;
+    if (list.children.length > 1) {
+      group.remove();
+    }
+  }
+});
+
+// Handle remove buttons
+document.body.addEventListener("click", (e) => {
+  if (e.target.classList.contains("remove-field")) {
+    const group = e.target.closest(".input-group");
+    const list = group.parentElement;
+    if (list.children.length > 1) {
+      group.remove();
+    }
+  }
+});
+
+// 1. Bulk tag update
 manageElements.submitTagsBtn.addEventListener("click", async () => {
   try {
-    const urls = manageElements.tagFileUrls.value.trim().split("\n").filter(Boolean);
-    const tags = manageElements.tagValues.value.trim().split("\n").filter(Boolean);
+    const urls = [...document.querySelectorAll(".tag-url-input")]
+  .map(input => input.value.trim())
+  .filter(Boolean);
+
+    const tags = [...document.querySelectorAll(".tag-value-input")]
+  .map(input => input.value.trim())
+  .filter(Boolean);
+
     const operation = parseInt(manageElements.tagOperation.value);
 
     if (urls.length === 0 || tags.length === 0) throw new Error("Please provide both URLs and tags.");
@@ -69,18 +120,21 @@ manageElements.submitTagsBtn.addEventListener("click", async () => {
   }
 });
 
-// 3. Delete files
+// 2. Delete files
 manageElements.deleteFilesBtn.addEventListener("click", async () => {
   try {
-    const urls = manageElements.deleteFileUrls.value.trim().split("\n").filter(Boolean);
-    if (urls.length === 0) throw new Error("Please enter file URLs to delete.");
+    const deleteUrls = [...document.querySelectorAll(".delete-url-input")]
+  .map(input => input.value.trim())
+  .filter(Boolean);
+
+if (deleteUrls.length === 0) throw new Error("Please enter file URLs to delete.");
 
     manageElements.deleteStatus.innerText = "Deleting files...";
 
     const response = await fetch(`${API_CONFIG.baseUrl}/delete-files`, {
       method: "POST",
       headers: API_CONFIG.headers,
-      body: JSON.stringify({ url: urls }),
+      body: JSON.stringify({ url: deleteUrls  }),
     });
 
     if (!response.ok) throw new Error("Failed to delete files");
