@@ -2,6 +2,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- AWS Cognito SDK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/amazon-cognito-identity-js/6.3.12/amazon-cognito-identity.min.js"></script>
     <title>BirdTag</title>
     <link rel="stylesheet" href="../styles/style.css">
 </head>
@@ -34,9 +36,10 @@
             </ul>
 
             <div class="auth-section">
-                    <span class="welcome-message">Welcome, User!</span>
-                    <button class="auth-btn login">Login</button>
+                <span class="welcome-message">Welcome, Bird Detectors from FIT5225 Teaching Team!!!</span>
+                <a href="https://ap-southeast-2k4rcti6cd.auth.ap-southeast-2.amazoncognito.com/login?client_id=66gnv00j886spaj5na9f1km3ht&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2F5225birdtags3-01.s3.ap-southeast-2.amazonaws.com%2Fstatic_frontend%2FbirdtagFrontEnd%2Fpublic%2Fpages%2FhomePage.html">
                     <button class="auth-btn logout">Logout</button>
+                </a>
             </div>
         </nav>
     </header>

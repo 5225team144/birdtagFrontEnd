@@ -16,7 +16,6 @@ const API_CONFIG = {
   baseUrl: "https://d32mqshkvl.execute-api.ap-southeast-2.amazonaws.com/queries01",
   headers: {
     "Content-Type": "application/json",
-    // You can add Authorization header here if needed
   },
 };
 
@@ -72,38 +71,36 @@ document.body.addEventListener("click", (e) => {
   }
 });
 
-// Handle remove buttons
-document.body.addEventListener("click", (e) => {
-  if (e.target.classList.contains("remove-field")) {
-    const group = e.target.closest(".input-group");
-    const list = group.parentElement;
-    if (list.children.length > 1) {
-      group.remove();
-    }
-  }
-});
-
 // 1. Bulk tag update
 manageElements.submitTagsBtn.addEventListener("click", async () => {
   try {
     const urls = [...document.querySelectorAll(".tag-url-input")]
-  .map(input => input.value.trim())
-  .filter(Boolean);
+      .map(input => input.value.trim())
+      .filter(Boolean);
 
     const tags = [...document.querySelectorAll(".tag-value-input")]
-  .map(input => input.value.trim())
-  .filter(Boolean);
+      .map(input => {
+        const value = input.value.trim();
+        if (!value.includes(',')) {
+          // Default count to 1 if not specified
+          return `${value},1`;
+        }
+        return value;
+      })
+      .filter(Boolean);
 
     const operation = parseInt(manageElements.tagOperation.value);
 
-    if (urls.length === 0 || tags.length === 0) throw new Error("Please provide both URLs and tags.");
+    if (urls.length === 0) throw new Error("Please provide file URLs");
+    if (tags.length === 0) throw new Error("Please provide tags in 'tag,count' format");
 
     const requestBody = {
       url: urls,
       operation: operation,
-      tags: tags,
+      tags: tags
     };
 
+    console.log("Sending request:", requestBody); // Debug log
     manageElements.tagUpdateStatus.innerText = "Updating tags...";
 
     const response = await fetch(`${API_CONFIG.baseUrl}/edit-tags`, {
@@ -112,11 +109,40 @@ manageElements.submitTagsBtn.addEventListener("click", async () => {
       body: JSON.stringify(requestBody),
     });
 
-    if (!response.ok) throw new Error("Failed to update tags");
-    manageElements.tagUpdateStatus.innerText = "✅ Tags updated successfully!";
+    const responseData = await response.json();
+    console.log("Received response:", responseData); // Debug log
+
+    if (!response.ok || !responseData.all_success) {
+      // Process individual failures
+      const errorMessages = [];
+      for (const [url, result] of Object.entries(responseData.results)) {
+        if (!result.success) {
+          errorMessages.push(`Failed to update ${url}`);
+        }
+      }
+      throw new Error(errorMessages.join('\n') || "Tag update failed");
+    }
+
+    const hasRealChanges = Object.values(responseData.results).some(fileResult => 
+      fileResult.results.some(op => op.operation !== "skip")
+    );
+
+    if (!hasRealChanges) {
+      throw new Error("No tags were actually modified - all operations were skips");
+    }
+
+    // Build success message with details
+    let successMessage = "Tag operations completed successfully!\n";
+    
+
+    manageElements.tagUpdateStatus.innerHTML = successMessage
+      .split('\n')
+      .map(line => `<div>${line}</div>`)
+      .join('');
+      
   } catch (err) {
-    console.error(err);
-    manageElements.tagUpdateStatus.innerText = `❌ ${err.message}`;
+    console.error("Tag update error:", err);
+    manageElements.tagUpdateStatus.innerHTML = `❌ ${err.message}`;
   }
 });
 
