@@ -4,8 +4,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- AWS Cognito SDK -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/amazon-cognito-identity-js/6.3.12/amazon-cognito-identity.min.js"></script>
+    <script src="../scripts/auth.js?v=5"></script>
+    <script>
+        requireLogin(); // forces redirect if not logged in
+    </script>
     <title>BirdTag</title>
-    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/style.css?v=5">
 </head>
 
 <body>
@@ -93,6 +97,6 @@
       <div id="delete-status" class="status-message"></div>
     </section>
   </main>
-  <script src="../scripts/managePage.js"></script>
+  <script src="../scripts/managePage.js?v=5"></script>
 </body>
 </html>

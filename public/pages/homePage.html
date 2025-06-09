@@ -6,11 +6,11 @@
     <title>BirdTag</title>
     <!-- AWS Cognito SDK -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/amazon-cognito-identity-js/6.3.12/amazon-cognito-identity.min.js"></script>
-    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/auth.js?v=5"></script>
     <script>
-        // requireLogin(); // forces redirect if not logged in
+        requireLogin(); // forces redirect if not logged in
     </script>
-    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/style.css?v=5">
 </head>
 
 <body>
@@ -46,7 +46,7 @@
                     <button class="auth-btn logout">Logout</button>
                 </a>
             </div>
-            
+
         </nav>
     </header>
 
@@ -81,6 +81,6 @@
             </div>
         </section>
     </main>
-    <script src="../scripts/homePageScript.js"></script>
+    <script src="../scripts/homePageScript.js?v=5"></script>
 </body>
 </html>
