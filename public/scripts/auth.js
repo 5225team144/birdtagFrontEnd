@@ -16,6 +16,6 @@ function requireLogin() {
 
   if (!token) {
     // Redirect to Cognito Hosted UI for login
-    window.location.href = "https://ap-southeast-2vbh9yejbl.auth.ap-southeast-2.amazoncognito.com/login?client_id=6s2r7m3sr0i0m35n9lqaf7ne2l&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fd84l1y8p4kdic.cloudfront.net";
+    window.location.href = "https://ap-southeast-2vbh9yejbl.auth.ap-southeast-2.amazoncognito.com/login?client_id=6s2r7m3sr0i0m35n9lqaf7ne2l&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2F5225birdtags3-01.s3.ap-southeast-2.amazonaws.com%2Fstatic_frontend%2FbirdtagFrontEnd%2Fpublic2%2Fpages%2FhomePage.html";
   }
 }
